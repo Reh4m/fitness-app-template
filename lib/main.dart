@@ -1,3 +1,4 @@
+import 'package:fitness_app/src/themes/index.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,6 +10,11 @@ class FitnessApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, title: 'Fitness App');
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Fitness App',
+      theme: AppTheme.light,
+      themeMode: ThemeMode.light,
+    );
   }
 }
