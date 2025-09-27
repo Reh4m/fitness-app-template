@@ -12,25 +12,20 @@ class TodayPlanCard extends StatelessWidget {
         color: theme.cardColor,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Stack(
-            fit: StackFit.passthrough,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: <Widget>[
-                    _buildPlanImage(),
-                    const SizedBox(width: 15),
-                    Expanded(child: _buildPlanDetails(theme)),
-                  ],
-                ),
-              ),
-              Positioned(top: 0, right: 0, child: _buildPlanLevelBadge(theme)),
-            ],
+      child: Stack(
+        fit: StackFit.passthrough,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: <Widget>[
+                _buildPlanImage(),
+                const SizedBox(width: 15),
+                Expanded(child: _buildPlanDetails(theme)),
+              ],
+            ),
           ),
+          Positioned(top: 0, right: 0, child: _buildPlanLevelBadge(theme)),
         ],
       ),
     );
