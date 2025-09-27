@@ -18,6 +18,7 @@ class TodayPlanCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 _buildPlanImage(),
                 const SizedBox(width: 15),
