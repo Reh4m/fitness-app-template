@@ -1,3 +1,4 @@
+import 'package:fitness_app/src/themes/dark_theme.dart';
 import 'package:fitness_app/src/themes/light_theme.dart';
 import 'package:fitness_app/src/themes/text_theme.dart';
 import 'package:flutter/material.dart';
@@ -18,5 +19,21 @@ class AppTheme {
       outline: LightTheme.primaryColor,
     ),
     textTheme: AppTextTheme.light,
+  );
+
+  static ThemeData get dark => ThemeData(
+    brightness: Brightness.dark,
+    primaryColor: DarkTheme.primaryColor,
+    scaffoldBackgroundColor: DarkTheme.backgroundColor,
+    cardColor: DarkTheme.cardBackgroundColor,
+    colorScheme: const ColorScheme.dark(
+      primary: DarkTheme.primaryColor,
+      onPrimary: DarkTheme.onPrimaryColor,
+      primaryContainer: DarkTheme.primaryContainer,
+      onPrimaryContainer: DarkTheme.primaryColor,
+      secondary: DarkTheme.secondaryColor,
+      onSecondary: DarkTheme.onSecondaryColor,
+    ),
+    textTheme: AppTextTheme.dark,
   );
 }
