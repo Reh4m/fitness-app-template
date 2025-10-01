@@ -33,15 +33,13 @@ class TodayPlanCard extends StatelessWidget {
   }
 
   Widget _buildPlanImage() {
-    return Container(
-      width: 100,
-      height: 100,
-      decoration: BoxDecoration(
-        image: const DecorationImage(
-          image: AssetImage('assets/images/today_plan_section_1.png'),
-          fit: BoxFit.cover,
-        ),
-        borderRadius: BorderRadius.circular(12),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: Image.asset(
+        'assets/images/today_plan_section_1.png',
+        width: 100,
+        height: 100,
+        fit: BoxFit.cover,
       ),
     );
   }

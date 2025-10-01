@@ -17,15 +17,13 @@ class WorkoutCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage('assets/images/today_plan_section_1.png'),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.circular(12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset(
+              'assets/images/today_plan_section_1.png',
+              width: 80,
+              height: 80,
+              fit: BoxFit.cover,
             ),
           ),
           const SizedBox(width: 15),
