@@ -81,7 +81,7 @@ class TodayPlanCard extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerLeft,
         child: Container(
-          width: progress,
+          width: progress * 2.5,
           height: 20,
           padding: const EdgeInsets.all(1),
           decoration: BoxDecoration(
