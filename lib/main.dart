@@ -21,7 +21,7 @@ class FitnessApp extends StatelessWidget {
       title: 'Fitness App',
       theme: AppTheme.light,
       themeMode: ThemeMode.light,
-      initialRoute: '/',
+      initialRoute: '/onboarding',
       routes: {
         '/': (context) => const RootScreen(),
         '/onboarding': (context) => const OnboardingScreen(),
