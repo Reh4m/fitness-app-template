@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
 class TodayPlanCard extends StatelessWidget {
-  const TodayPlanCard({super.key});
+  final String imageUrl;
+  final String title;
+  final String description;
+  final double progress;
+  final String level;
+
+  const TodayPlanCard({
+    super.key,
+    required this.imageUrl,
+    required this.title,
+    required this.description,
+    required this.progress,
+    required this.level,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +48,7 @@ class TodayPlanCard extends StatelessWidget {
   Widget _buildPlanImage() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
-      child: Image.asset(
-        'assets/images/today_plan_section_1.png',
-        width: 100,
-        height: 100,
-        fit: BoxFit.cover,
-      ),
+      child: Image.asset(imageUrl, width: 100, height: 100, fit: BoxFit.cover),
     );
   }
 
@@ -48,10 +56,10 @@ class TodayPlanCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text('Push Up', style: theme.textTheme.titleLarge),
+        Text(title, style: theme.textTheme.titleLarge),
         const SizedBox(height: 10),
         Text(
-          '100 Push up a day',
+          description,
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.primaryColor.withAlpha(127), // 50% opacity
           ),
@@ -73,14 +81,16 @@ class TodayPlanCard extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerLeft,
         child: Container(
-          width: 75,
+          width: progress,
           height: 20,
           padding: const EdgeInsets.all(1),
           decoration: BoxDecoration(
             color: theme.colorScheme.secondary,
             borderRadius: BorderRadius.circular(5),
           ),
-          child: Center(child: Text('25%', style: theme.textTheme.labelSmall)),
+          child: Center(
+            child: Text('$progress%', style: theme.textTheme.labelSmall),
+          ),
         ),
       ),
     );
@@ -98,7 +108,7 @@ class TodayPlanCard extends StatelessWidget {
         ),
       ),
       child: Text(
-        'Intermediate',
+        level,
         style: theme.textTheme.bodySmall?.copyWith(
           color: theme.colorScheme.onPrimary,
         ),
