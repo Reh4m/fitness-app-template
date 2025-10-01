@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 
 class WorkoutCard extends StatelessWidget {
-  const WorkoutCard({super.key});
+  final String imageUrl;
+  final String title;
+  final String duration;
+  final String level;
+
+  const WorkoutCard({
+    super.key,
+    required this.imageUrl,
+    required this.title,
+    required this.duration,
+    required this.level,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +31,7 @@ class WorkoutCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
-              'assets/images/today_plan_section_1.png',
+              imageUrl,
               width: 80,
               height: 80,
               fit: BoxFit.cover,
@@ -31,11 +42,11 @@ class WorkoutCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('Belly fat burner', style: theme.textTheme.titleSmall),
+                Text(title, style: theme.textTheme.titleSmall),
                 const SizedBox(height: 10),
-                _buildInfoBadge(theme, '10 min'),
+                _buildInfoBadge(theme, duration),
                 const SizedBox(height: 6),
-                _buildInfoBadge(theme, 'Beginner'),
+                _buildInfoBadge(theme, level),
               ],
             ),
           ),
