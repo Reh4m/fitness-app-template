@@ -2,6 +2,45 @@ import 'package:fitness_app/src/screens/home/widgets/popular_workouts_card.dart'
 import 'package:fitness_app/src/screens/home/widgets/today_plan_card.dart';
 import 'package:flutter/material.dart';
 
+const popularWorkouts = [
+  {
+    'imageUrl': 'assets/images/popular_workouts_banner_1.png',
+    'title': 'Lower Body Training',
+    'calories': '500',
+    'duration': '50 Min',
+  },
+  {
+    'imageUrl': 'assets/images/popular_workouts_banner_1.png',
+    'title': 'Hand Training',
+    'calories': '600',
+    'duration': '40 Min',
+  },
+];
+
+const todayPlans = [
+  {
+    'imageUrl': 'assets/images/today_plan_1.png',
+    'title': 'Push Up',
+    'description': '100 Push up a day',
+    'progress': '45',
+    'level': 'Intermediate',
+  },
+  {
+    'imageUrl': 'assets/images/today_plan_2.png',
+    'title': 'Sit Up',
+    'description': '20 Sit up a day',
+    'progress': '75',
+    'level': 'Beginner',
+  },
+  {
+    'imageUrl': 'assets/images/today_plan_3.png',
+    'title': 'Knee Push Up',
+    'description': '10 Knee Push up a day',
+    'progress': '20',
+    'level': 'Beginner',
+  },
+];
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -80,9 +119,18 @@ class HomeScreen extends StatelessWidget {
       height: 180,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: 2,
+        itemCount: popularWorkouts.length,
         separatorBuilder: (context, index) => const SizedBox(width: 15),
-        itemBuilder: (context, index) => const PopularWorkoutsCard(),
+        itemBuilder: (context, index) {
+          final workout = popularWorkouts[index];
+
+          return PopularWorkoutsCard(
+            imageUrl: workout['imageUrl']!,
+            title: workout['title']!,
+            calories: workout['calories']!,
+            duration: workout['duration']!,
+          );
+        },
       ),
     );
   }
@@ -91,9 +139,19 @@ class HomeScreen extends StatelessWidget {
     return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: 3,
+      itemCount: todayPlans.length,
       separatorBuilder: (context, index) => const SizedBox(height: 15),
-      itemBuilder: (context, index) => const TodayPlanCard(),
+      itemBuilder: (context, index) {
+        final plan = todayPlans[index];
+
+        return TodayPlanCard(
+          imageUrl: plan['imageUrl']!,
+          title: plan['title']!,
+          description: plan['description']!,
+          progress: double.parse(plan['progress']!),
+          level: plan['level']!,
+        );
+      },
     );
   }
 }
