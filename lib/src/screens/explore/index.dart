@@ -2,6 +2,66 @@ import 'package:fitness_app/src/screens/explore/widgets/challenge_card.dart';
 import 'package:fitness_app/src/screens/explore/widgets/workout_card.dart';
 import 'package:flutter/material.dart';
 
+final bestForYouWorkouts = [
+  {
+    'title': 'Belly fat burner',
+    'image': 'assets/images/workout_1.png',
+    'duration': '10 min',
+    'level': 'Beginner',
+  },
+  {
+    'title': 'Plank',
+    'image': 'assets/images/workout_2.png',
+    'duration': '5 min',
+    'level': 'Expert',
+  },
+  {
+    'title': 'Lose Fat',
+    'image': 'assets/images/workout_3.png',
+    'duration': '10 min',
+    'level': 'Beginner',
+  },
+  {
+    'title': 'Build Whider',
+    'image': 'assets/images/workout_4.png',
+    'duration': '30 min',
+    'level': 'Intermediate',
+  },
+];
+
+final challenges = [
+  {
+    'title': 'Plank Challenge',
+    'imageUrl': 'assets/images/challenge_1.png',
+    'useInverseTextColor': 'false',
+  },
+  {
+    'title': 'Sprint Challenge',
+    'imageUrl': 'assets/images/challenge_2.png',
+    'useInverseTextColor': 'true',
+  },
+  {
+    'title': 'Squat Challenge',
+    'imageUrl': 'assets/images/challenge_3.png',
+    'useInverseTextColor': 'false',
+  },
+];
+
+final fastWarmupWorkouts = [
+  {
+    'title': 'Leg exercises',
+    'image': 'assets/images/fast_warmup_1.png',
+    'duration': '10 min',
+    'level': 'Beginner',
+  },
+  {
+    'title': 'Backward Lunges',
+    'image': 'assets/images/fast_warmup_2.png',
+    'duration': '5 min',
+    'level': 'Beginner',
+  },
+];
+
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});
 
@@ -107,8 +167,17 @@ class ExploreScreen extends StatelessWidget {
           mainAxisSpacing: 10,
           mainAxisExtent: 220,
         ),
-        itemCount: 4,
-        itemBuilder: (_, index) => const WorkoutCard(),
+        itemCount: bestForYouWorkouts.length,
+        itemBuilder: (_, index) {
+          final workout = bestForYouWorkouts[index];
+
+          return WorkoutCard(
+            imageUrl: workout['image']!,
+            title: workout['title']!,
+            duration: workout['duration']!,
+            level: workout['level']!,
+          );
+        },
       ),
     );
   }
@@ -118,9 +187,17 @@ class ExploreScreen extends StatelessWidget {
       height: 150,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: 4,
+        itemCount: challenges.length,
         separatorBuilder: (_, __) => const SizedBox(width: 10),
-        itemBuilder: (_, index) => const ChallengeCard(),
+        itemBuilder: (_, index) {
+          final challenge = challenges[index];
+
+          return ChallengeCard(
+            imageUrl: challenge['imageUrl']!,
+            title: challenge['title']!,
+            useInverseTextColor: challenge['useInverseTextColor'] == 'true',
+          );
+        },
       ),
     );
   }
@@ -130,9 +207,18 @@ class ExploreScreen extends StatelessWidget {
       height: 100,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: 4,
+        itemCount: fastWarmupWorkouts.length,
         separatorBuilder: (_, __) => const SizedBox(width: 10),
-        itemBuilder: (_, index) => const WorkoutCard(),
+        itemBuilder: (_, index) {
+          final workout = fastWarmupWorkouts[index];
+
+          return WorkoutCard(
+            imageUrl: workout['image']!,
+            title: workout['title']!,
+            duration: workout['duration']!,
+            level: workout['level']!,
+          );
+        },
       ),
     );
   }
