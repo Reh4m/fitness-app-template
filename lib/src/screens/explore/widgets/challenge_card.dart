@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ChallengeCard extends StatelessWidget {
-  const ChallengeCard({super.key});
+  final String imageUrl;
+  final String title;
+  final bool useInverseTextColor;
+
+  const ChallengeCard({
+    super.key,
+    required this.imageUrl,
+    required this.title,
+    required this.useInverseTextColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +20,8 @@ class ChallengeCard extends StatelessWidget {
       width: 150,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: theme.colorScheme.secondary,
         borderRadius: BorderRadius.circular(12),
+        image: DecorationImage(image: AssetImage(imageUrl), fit: BoxFit.cover),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -21,8 +30,15 @@ class ChallengeCard extends StatelessWidget {
           Flexible(
             flex: 3,
             child: Text(
-              'Plank Challenge',
-              style: theme.textTheme.headlineSmall,
+              title,
+              style: theme.textTheme.headlineLarge?.copyWith(
+                color:
+                    useInverseTextColor
+                        ? theme.colorScheme.primaryContainer
+                        : theme.colorScheme.primary,
+                fontWeight: FontWeight.w500,
+                height: 1.5,
+              ),
             ),
           ),
           const Spacer(flex: 2),
