@@ -49,10 +49,10 @@ class ExerciseItem extends StatelessWidget {
               ],
             ),
           ),
-          IconButton.filled(
+          IconButton.filledTonal(
             onPressed: () {},
             iconSize: 20,
-            icon: const Icon(Icons.play_arrow),
+            icon: Icon(Icons.play_arrow, color: theme.colorScheme.primary),
           ),
         ],
       ),
