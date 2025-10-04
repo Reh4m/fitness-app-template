@@ -18,46 +18,53 @@ class PopularWorkoutsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      width: 300,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage(imageUrl), fit: BoxFit.cover),
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            flex: 3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  title,
-                  style: theme.textTheme.displayMedium?.copyWith(
-                    color: theme.colorScheme.onPrimary,
+    return InkWell(
+      onTap: () => Navigator.pushNamed(context, '/workout'),
+      borderRadius: BorderRadius.circular(15),
+      child: Container(
+        width: 300,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(imageUrl),
+            fit: BoxFit.cover,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              flex: 3,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    title,
+                    style: theme.textTheme.displayMedium?.copyWith(
+                      color: theme.colorScheme.onPrimary,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                _buildWorkoutInfo(
-                  theme,
-                  Icons.local_fire_department_outlined,
-                  '$calories kcal',
-                ),
-                const SizedBox(height: 10),
-                _buildWorkoutInfo(theme, Icons.schedule, duration),
-              ],
+                  const SizedBox(height: 10),
+                  _buildWorkoutInfo(
+                    theme,
+                    Icons.local_fire_department_outlined,
+                    '$calories kcal',
+                  ),
+                  const SizedBox(height: 10),
+                  _buildWorkoutInfo(theme, Icons.schedule, duration),
+                ],
+              ),
             ),
-          ),
-          Flexible(
-            child: IconButton.filledTonal(
-              onPressed: () {},
-              icon: const Icon(Icons.play_arrow, size: 30),
+            Flexible(
+              child: IconButton.filledTonal(
+                onPressed: () {},
+                icon: const Icon(Icons.play_arrow, size: 30),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

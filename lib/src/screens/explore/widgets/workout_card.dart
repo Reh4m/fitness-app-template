@@ -18,39 +18,43 @@ class WorkoutCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      width: 220,
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: theme.cardColor,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              imageUrl,
-              width: 80,
-              height: 80,
-              fit: BoxFit.cover,
+    return InkWell(
+      onTap: () => Navigator.pushNamed(context, '/workout'),
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        width: 220,
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: theme.cardColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                imageUrl,
+                width: 80,
+                height: 80,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          const SizedBox(width: 15),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(title, style: theme.textTheme.titleSmall),
-                const SizedBox(height: 10),
-                _buildInfoBadge(theme, duration),
-                const SizedBox(height: 6),
-                _buildInfoBadge(theme, level),
-              ],
+            const SizedBox(width: 15),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(title, style: theme.textTheme.titleSmall),
+                  const SizedBox(height: 10),
+                  _buildInfoBadge(theme, duration),
+                  const SizedBox(height: 6),
+                  _buildInfoBadge(theme, level),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

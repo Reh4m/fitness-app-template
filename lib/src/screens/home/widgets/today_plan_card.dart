@@ -20,27 +20,31 @@ class TodayPlanCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      decoration: BoxDecoration(
-        color: theme.cardColor,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Stack(
-        fit: StackFit.passthrough,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                _buildPlanImage(),
-                const SizedBox(width: 15),
-                Expanded(child: _buildPlanDetails(theme)),
-              ],
+    return InkWell(
+      onTap: () => Navigator.pushNamed(context, '/workout'),
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        decoration: BoxDecoration(
+          color: theme.cardColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Stack(
+          fit: StackFit.passthrough,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  _buildPlanImage(),
+                  const SizedBox(width: 15),
+                  Expanded(child: _buildPlanDetails(theme)),
+                ],
+              ),
             ),
-          ),
-          Positioned(top: 0, right: 0, child: _buildPlanLevelBadge(theme)),
-        ],
+            Positioned(top: 0, right: 0, child: _buildPlanLevelBadge(theme)),
+          ],
+        ),
       ),
     );
   }
