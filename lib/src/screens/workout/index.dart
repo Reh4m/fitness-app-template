@@ -1,5 +1,6 @@
 import 'package:fitness_app/src/screens/workout/widgets/exercise_item.dart';
 import 'package:fitness_app/src/themes/index.dart';
+import 'package:fitness_app/src/widgets/common/primary_button.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutScreen extends StatelessWidget {
@@ -7,6 +8,8 @@ class WorkoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const double bottomNavBarHeight = 48;
+
     return Theme(
       data: AppTheme.dark,
       child: Builder(
@@ -15,34 +18,50 @@ class WorkoutScreen extends StatelessWidget {
 
           return Scaffold(
             body: SafeArea(
-              child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      const SizedBox(height: 20),
-                      _buildScreenHeader(theme),
-                      const SizedBox(height: 20),
-                      Stack(
-                        alignment: Alignment.bottomCenter,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          _buildWorkoutImageBanner(theme),
-                          Positioned(
-                            bottom: 20,
-                            child: _buildWorkoutDetails(theme),
+                          const SizedBox(height: 20),
+                          _buildScreenHeader(context, theme),
+                          const SizedBox(height: 20),
+                          Stack(
+                            alignment: Alignment.bottomCenter,
+                            children: <Widget>[
+                              _buildWorkoutImageBanner(theme),
+                              Positioned(
+                                bottom: 20,
+                                child: _buildWorkoutDetails(theme),
+                              ),
+                            ],
                           ),
+                          const SizedBox(height: 20),
+                          _buildWorkoutDescription(theme),
+                          const SizedBox(height: 20),
+                          _buildRoundsSection(theme),
+                          // Extra space to allow for scrolling above the button
+                          const SizedBox(height: bottomNavBarHeight + 40),
                         ],
                       ),
-                      const SizedBox(height: 20),
-                      _buildWorkoutDescription(theme),
-                      const SizedBox(height: 20),
-                      _buildRoundsSection(theme),
-                      const SizedBox(height: 20),
-                    ],
+                    ),
                   ),
-                ),
+                  Positioned(
+                    bottom: 20,
+                    left: 20,
+                    right: 20,
+                    child: PrimaryButton(
+                      onPressed: () {},
+                      text: 'Lets Workout',
+                      variant: ButtonColorVariant.primary,
+                    ),
+                  ),
+                ],
               ),
             ),
           );
@@ -51,10 +70,13 @@ class WorkoutScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildScreenHeader(ThemeData theme) {
+  Widget _buildScreenHeader(BuildContext context, ThemeData theme) {
     return Row(
       children: <Widget>[
-        IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back_ios)),
+        IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
         Expanded(
           child: Text(
             'Workout',
