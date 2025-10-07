@@ -1,33 +1,7 @@
+import 'package:fitness_app/src/data/index.dart';
 import 'package:fitness_app/src/screens/explore/widgets/challenge_card.dart';
 import 'package:fitness_app/src/screens/explore/widgets/workout_card.dart';
 import 'package:flutter/material.dart';
-
-final bestForYouWorkouts = [
-  {
-    'title': 'Belly fat burner',
-    'image': 'assets/images/workout_1.png',
-    'duration': '10 min',
-    'level': 'Beginner',
-  },
-  {
-    'title': 'Plank',
-    'image': 'assets/images/workout_2.png',
-    'duration': '5 min',
-    'level': 'Expert',
-  },
-  {
-    'title': 'Lose Fat',
-    'image': 'assets/images/workout_3.png',
-    'duration': '10 min',
-    'level': 'Beginner',
-  },
-  {
-    'title': 'Build Whider',
-    'image': 'assets/images/workout_4.png',
-    'duration': '30 min',
-    'level': 'Intermediate',
-  },
-];
 
 final challenges = [
   {
@@ -44,21 +18,6 @@ final challenges = [
     'title': 'Squat Challenge',
     'imageUrl': 'assets/images/challenge_3.png',
     'useInverseTextColor': 'false',
-  },
-];
-
-final fastWarmupWorkouts = [
-  {
-    'title': 'Leg exercises',
-    'image': 'assets/images/fast_warmup_1.png',
-    'duration': '10 min',
-    'level': 'Beginner',
-  },
-  {
-    'title': 'Backward Lunges',
-    'image': 'assets/images/fast_warmup_2.png',
-    'duration': '5 min',
-    'level': 'Beginner',
   },
 ];
 
@@ -171,12 +130,7 @@ class ExploreScreen extends StatelessWidget {
         itemBuilder: (_, index) {
           final workout = bestForYouWorkouts[index];
 
-          return WorkoutCard(
-            imageUrl: workout['image']!,
-            title: workout['title']!,
-            duration: workout['duration']!,
-            level: workout['level']!,
-          );
+          return WorkoutCard(workout: workout);
         },
       ),
     );
@@ -212,12 +166,7 @@ class ExploreScreen extends StatelessWidget {
         itemBuilder: (_, index) {
           final workout = fastWarmupWorkouts[index];
 
-          return WorkoutCard(
-            imageUrl: workout['image']!,
-            title: workout['title']!,
-            duration: workout['duration']!,
-            level: workout['level']!,
-          );
+          return WorkoutCard(workout: workout);
         },
       ),
     );

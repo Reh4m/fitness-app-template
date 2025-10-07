@@ -1,20 +1,10 @@
+import 'package:fitness_app/src/models/workout_model.dart';
 import 'package:flutter/material.dart';
 
 class TodayPlanCard extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final String description;
-  final double progress;
-  final String level;
+  final Workout workout;
 
-  const TodayPlanCard({
-    super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.description,
-    required this.progress,
-    required this.level,
-  });
+  const TodayPlanCard({super.key, required this.workout});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +42,12 @@ class TodayPlanCard extends StatelessWidget {
   Widget _buildPlanImage() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
-      child: Image.asset(imageUrl, width: 100, height: 100, fit: BoxFit.cover),
+      child: Image.asset(
+        workout.imageUrl,
+        width: 100,
+        height: 100,
+        fit: BoxFit.cover,
+      ),
     );
   }
 
@@ -60,10 +55,10 @@ class TodayPlanCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(title, style: theme.textTheme.titleLarge),
+        Text(workout.title, style: theme.textTheme.titleLarge),
         const SizedBox(height: 10),
         Text(
-          description,
+          workout.description ?? '',
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.primaryColor.withAlpha(127), // 50% opacity
           ),
@@ -85,7 +80,7 @@ class TodayPlanCard extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerLeft,
         child: Container(
-          width: progress * 2.5,
+          width: (workout.progress ?? 0) * 2.5,
           height: 20,
           padding: const EdgeInsets.all(1),
           decoration: BoxDecoration(
@@ -93,7 +88,10 @@ class TodayPlanCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
           ),
           child: Center(
-            child: Text('$progress%', style: theme.textTheme.labelSmall),
+            child: Text(
+              '${workout.progress}%',
+              style: theme.textTheme.labelSmall,
+            ),
           ),
         ),
       ),
@@ -112,7 +110,7 @@ class TodayPlanCard extends StatelessWidget {
         ),
       ),
       child: Text(
-        level,
+        workout.level,
         style: theme.textTheme.bodySmall?.copyWith(
           color: theme.colorScheme.onPrimary,
         ),

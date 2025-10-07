@@ -1,18 +1,10 @@
+import 'package:fitness_app/src/models/workout_model.dart';
 import 'package:flutter/material.dart';
 
 class PopularWorkoutsCard extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final String calories;
-  final String duration;
+  final Workout workout;
 
-  const PopularWorkoutsCard({
-    super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.calories,
-    required this.duration,
-  });
+  const PopularWorkoutsCard({super.key, required this.workout});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +18,7 @@ class PopularWorkoutsCard extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(imageUrl),
+            image: AssetImage(workout.imageUrl),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(15),
@@ -41,7 +33,7 @@ class PopularWorkoutsCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    title,
+                    workout.title,
                     style: theme.textTheme.displayMedium?.copyWith(
                       color: theme.colorScheme.onPrimary,
                     ),
@@ -50,10 +42,10 @@ class PopularWorkoutsCard extends StatelessWidget {
                   _buildWorkoutInfo(
                     theme,
                     Icons.local_fire_department_outlined,
-                    '$calories kcal',
+                    '${workout.calories} kcal',
                   ),
                   const SizedBox(height: 10),
-                  _buildWorkoutInfo(theme, Icons.schedule, duration),
+                  _buildWorkoutInfo(theme, Icons.schedule, workout.duration),
                 ],
               ),
             ),
