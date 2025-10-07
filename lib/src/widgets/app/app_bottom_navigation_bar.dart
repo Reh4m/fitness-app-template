@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hugeicons/hugeicons.dart';
 
 class AppBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -26,25 +25,29 @@ class AppBottomNavigationBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _NavigationTabItem(
-            icon: HugeIcons.strokeRoundedHome03,
+            icon: Icons.home_outlined,
+            activeIcon: Icons.home,
             label: 'Home',
             isSelected: currentIndex == 0,
             onTap: () => onTabSelected(0),
           ),
           _NavigationTabItem(
-            icon: HugeIcons.strokeRoundedRocket,
+            icon: Icons.explore_outlined,
+            activeIcon: Icons.explore,
             label: 'Explore',
             isSelected: currentIndex == 1,
             onTap: () => onTabSelected(1),
           ),
           _NavigationTabItem(
-            icon: HugeIcons.strokeRoundedAnalytics01,
+            icon: Icons.bar_chart_outlined,
+            activeIcon: Icons.bar_chart,
             label: 'Analytics',
             isSelected: currentIndex == 2,
             onTap: () => onTabSelected(2),
           ),
           _NavigationTabItem(
-            icon: HugeIcons.strokeRoundedUser03,
+            icon: Icons.person_outline,
+            activeIcon: Icons.person,
             label: 'Profile',
             isSelected: currentIndex == 3,
             onTap: () => onTabSelected(3),
@@ -56,13 +59,15 @@ class AppBottomNavigationBar extends StatelessWidget {
 }
 
 class _NavigationTabItem extends StatefulWidget {
-  final List<List<dynamic>> icon;
+  final IconData icon;
+  final IconData activeIcon;
   final String label;
   final bool isSelected;
   final VoidCallback onTap;
 
   const _NavigationTabItem({
     required this.icon,
+    required this.activeIcon,
     required this.label,
     required this.isSelected,
     required this.onTap,
@@ -127,8 +132,8 @@ class _NavigationTabItemState extends State<_NavigationTabItem>
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              HugeIcon(
-                icon: widget.icon,
+              Icon(
+                widget.isSelected ? widget.activeIcon : widget.icon,
                 color:
                     widget.isSelected
                         ? theme.colorScheme.onSecondary
